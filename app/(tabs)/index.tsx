@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import NavBar from '@/components/navBar';
 import axios from 'axios';
 import { UserGetMinunType } from '@/utils/protocols';
+import { API_URL, GITHUB_TOKEN } from '@env';
 
 export default function SearchScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -16,8 +17,13 @@ export default function SearchScreen() {
   });
 
   useEffect(() => {
+    
     if (searchValue.length > 0) {
-      axios.get(`https://api.github.com/users/${searchValue}`) // é bom colocar o autorization e colocar o .env
+      axios.get(`${API_URL}/users/${searchValue}`, {
+        headers:{
+          Authorization: `Bearer ${GITHUB_TOKEN}`
+        }
+      })
         .then((data) => {
           setUser(data.data)
           console.log(data.data)
@@ -25,7 +31,8 @@ export default function SearchScreen() {
         .catch(e => { console.log(e) })
     }
   }, [searchValue])
-
+  console.log(user.name)
+  console.log(user.login)
   return (
     <ContainerScreen>
       <NavBar></NavBar>
@@ -46,9 +53,9 @@ export default function SearchScreen() {
                 source={{ uri: `${user.avatar_url}` }}
               />
               <View>
-                <NameSearched>{user.name}</NameSearched>
-                <UserNameSearched>{user.login}</UserNameSearched>
-                <CitySearched>{user.location}</CitySearched>
+                <NameSearched>{user.name ? user.name: "Error: No name."}</NameSearched>
+                <UserLoginSearched>{user.login}</UserLoginSearched>
+                <CitySearched>{user.location ? user.location: "Error: No location."}</CitySearched>
               </View>
             </View>
             <IconUser>
@@ -127,7 +134,7 @@ const NameSearched = styled.Text`
   max-width: 160px;
 `
 
-const UserNameSearched = styled.Text`
+const UserLoginSearched = styled.Text`
   color: #6B7280;
   font-weight: 400;
   font-size: 14px;

@@ -48,3 +48,24 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+# Gerando o token GitHub
+
+1- Logar no GitHub: Entre na sua conta do GitHub.
+
+2- Navegar até as configurações: Clique no seu avatar no canto superior direito, depois vá em Settings (Configurações).
+
+3- Ir para "Developer settings": No menu lateral esquerdo, role até o final e clique em Developer settings.
+
+4- Criar um novo token:
+    No menu esquerdo, clique em Personal access tokens e depois em Tokens (classic).
+    Clique no botão Generate new token.
+
+5- Configurar o token:
+    Dê um nome para o token.
+    Escolha a validade (por quanto tempo o token será válido).
+    Marque as permissões que você deseja que o token tenha. Se for apenas para leitura de informações públicas, marque repo e user.
+
+6- Gerar o token:
+    Clique em Generate token no final da página.
+    O GitHub vai mostrar seu token apenas uma vez, então copie-o e armazene-o em um lugar seguro (ex: arquivo .env no projeto).
