@@ -1,9 +1,11 @@
+import NavBar from '@/components/navBar';
 import { styled } from 'styled-components/native';
 
 export default function RecentSearchesScreen() {
   return (
     <>
       <ContainerScreen>
+        <NavBar></NavBar>
       </ContainerScreen>
     </>
   );
