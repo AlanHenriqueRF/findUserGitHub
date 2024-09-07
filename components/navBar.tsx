@@ -19,7 +19,7 @@ export default function NavBar() {
 
     return (
         <>
-            <ContainerNav $marginOs={osName.osName === "iOS" ? '55px 25px 25px 25px' : '20px'}>
+            <ContainerNav $heightOs={osName.osName === "iOS" ? '127px' : '100px'}>
                 <Link href={'https://github.com/'}>
                     <Ionicons name="logo-github" size={50} color="#ffffff" />
                 </Link>
@@ -28,11 +28,12 @@ export default function NavBar() {
     );
 }
 
-const ContainerNav = styled.View<{ $marginOs?: string; }>`
+const ContainerNav = styled.View<{ $heightOs?: string; paddingOs?:string }>`
     background-color: #111111;
-    height: 72px;
+    height: ${props => props.$heightOs};
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: ${props => props.$marginOs};
+    padding-top: ${props => props.$heightOs === '127px'? '30px': '0px'};
+    margin: 0 0 20px 0;
 `
