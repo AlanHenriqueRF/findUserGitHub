@@ -1,70 +1,59 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { OsNameInfo } from '@/utils/protocols';
+import { useEffect, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
+import { styled } from 'styled-components/native';
+import * as Device from 'expo-device';
+import { Ionicons } from '@expo/vector-icons';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function SearchScreen() {
+  const [osName, setosName] = useState<OsNameInfo>({
+    osName: null
+  });
 
-export default function HomeScreen() {
+  useEffect(() => {
+    const info = {
+      osName: Device.osName,
+    };
+    setosName(info);
+  }, []);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ContainerScreen>
+      <ContainerSearch $marginOs={osName.osName === "iOS" ? '55px 25px 25px 25px' : '20px'}>
+        <Text aria-label="Label for Username" nativeID="labelUsername" style={{ color: "white" }}>
+          <Ionicons name="search-outline" size={20} color="#9CA3AF" />
+        </Text>
+        <SearchInput aria-label="input" aria-labelledby="labelUsername" placeholder="Search GitHub username..." />
+      </ContainerSearch>
+    </ContainerScreen>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+const ContainerScreen = styled.ScrollView`
+  background-color: #1D1B1B;
+`
+
+const ContainerSearch = styled.View<{ $marginOs?: string; }>`
+  height: 40px;
+  border: 1px solid #D1D5DB;
+  border-radius: 9999px;
+  background-color: #0F0F10;
+  margin: ${props => props.$marginOs};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+  cursor: pointer;
+`
+
+const SearchInput = styled.TextInput`
+  color: #DBDBD7;
+  padding-left: 9px;
+  margin-right: 13px;
+  flex-grow: 1; 
+  height: 100%;
+  font-size: 14px;
+  font-weight: 400;
+`
+
