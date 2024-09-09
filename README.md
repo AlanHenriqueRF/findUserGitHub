@@ -1,71 +1,77 @@
-# Welcome to your Expo app 👋
+# FindUserGitHub
+ Este projeto é um web-app desenvolvido em React Native para buscar e exibir informações de usuários e repositórios do GitHub. A aplicação permite pesquisar pelo nome de usuário, listar os repositórios e exibir detalhes de cada um deles. Além disso, mantém um histórico das buscas recentes para fácil acesso.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Tecnologias Utilizadas
+- React Native (Expo): Para desenvolvimento mobile.
+- TypeScript: Linguagem de programação utilizada.
+- Axios: Para fazer as requisições HTTP à API do GitHub.
+- Styled-components: Para estilização dos componentes.
 
-## Get started
+## Funcionalidades
+1. Busca de Usuários: Busque qualquer usuário do GitHub através de seu username e exiba informações como foto, nome, login e localização.
+2. Perfil Detalhado: Exibe informações detalhadas do usuário, incluindo quantidade de seguidores, repositórios públicos e mais.
+3. Lista de Repositórios: Veja todos os repositórios públicos do usuário, com detalhes como nome, linguagem, descrição e datas de criação e último push.
+4. Histórico de Pesquisas: Acompanhe os últimos usuários pesquisados, com rápido acesso a seus perfis.
+5. Navegação até Repositórios: Clique em um repositório para ser redirecionado ao GitHub.
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+# Instalação
+### Clone o repositório:
 
 ```bash
-npm run reset-project
+git clone https://github.com/seu-usuario/findusergithub.git
+```
+### Acesse a pasta do projeto:
+
+```bash
+cd findusergithub
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Instale as dependências:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Como Rodar o Projeto
+### Para iniciar o projeto iremos usar o <strong>Expo</strong>, utilize:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+### Por fim, <strong>escanei o QR code, e baixe o app do Expo Go, para conseguir rodar a aplicação em seu celular</strong>, ou acessar o localhost para acessar de forma Web.
 
-Join our community of developers creating universal apps.
+# Configuração do Ambiente (.env)
+No arquivo .env, você precisa configurar a variável ***GITHUB_TOKEN***, que será utilizada para autenticar as requisições à API do GitHub.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Gerando o token GitHub:
+1. Logar no GitHub: Entre na sua conta do GitHub.
 
-# Gerando o token GitHub
+2. Navegar até as configurações: Clique no seu avatar no canto superior direito, depois vá em `Settings` (Configurações).
 
-1- Logar no GitHub: Entre na sua conta do GitHub.
+3. Ir para `"Developer settings"`: No menu lateral esquerdo, role até o final e clique em Developer settings.
 
-2- Navegar até as configurações: Clique no seu avatar no canto superior direito, depois vá em Settings (Configurações).
-
-3- Ir para "Developer settings": No menu lateral esquerdo, role até o final e clique em Developer settings.
-
-4- Criar um novo token:
-    No menu esquerdo, clique em Personal access tokens e depois em Tokens (classic).
+4. Criar um novo token:
+    No menu esquerdo, clique em ***Personal access tokens*** e depois em Tokens (`classic`).
     Clique no botão Generate new token.
 
-5- Configurar o token:
+5. Configurar o token:
     Dê um nome para o token.
     Escolha a validade (por quanto tempo o token será válido).
     Marque as permissões que você deseja que o token tenha. Se for apenas para leitura de informações públicas, marque repo e user.
 
-6- Gerar o token:
+6. Gerar o token:
     Clique em Generate token no final da página.
-    O GitHub vai mostrar seu token apenas uma vez, então copie-o e armazene-o em um lugar seguro (ex: arquivo .env no projeto).
+    O GitHub vai mostrar seu token apenas uma vez, então copie-o e armazene-o em um lugar seguro (ex: arquivo `.env` no projeto).
+
+    ```
+    GITHUB_TOKEN=seu_token_aqui
+    ```
+# Figma
+Se desejar conferir o design que foi desenvolvido no Figma, clique no link abaixo:
+
+Link do [Figma](https://www.figma.com/design/jm1pAFrjBeGB7YF8CZM9Li/Untitled?node-id=1-47&node-type=FRAME&t=IuowpJgywc28eEfL-0)
+
+# Links de Entrega
+- Repositório no GitHub: https://github.com/seu-usuario/findusergithub
+- Link de download do APK: [Drive, Mega, Dropbox, GitHub]
