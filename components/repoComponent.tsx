@@ -27,14 +27,15 @@ export function RepoComponent({ name, language, description, created_at, pushed_
                     </NameRepoAndLanguageContainer>
 
                     <NameRepoAndLanguageContainer>
-                        <LanguageRepo>Pushed at: {formatDate(pushed_at)}</LanguageRepo>
+                        <LanguageRepo>Created at: {formatDate(created_at)}</LanguageRepo>
                     </NameRepoAndLanguageContainer>
 
                     <NameRepoAndLanguageContainer>
-                        <LanguageRepo>Created at: {formatDate(created_at)}</LanguageRepo>
+                        <LanguageRepo>Pushed at: {formatDate(pushed_at)}</LanguageRepo>
                     </NameRepoAndLanguageContainer>
+                    
                 </RepoContainer>
-            </TouchableOpacity>: <></>}
+            </TouchableOpacity> : <></>}
         </>
     )
 }

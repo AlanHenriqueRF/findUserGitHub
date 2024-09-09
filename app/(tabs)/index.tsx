@@ -135,6 +135,7 @@ const MessageSearched = styled.Text`
   margin-bottom: 2px;
   margin-right: 20px;
   margin: 0 24px;
+  text-align: center;
 `
 
 const NameSearched = styled.Text`

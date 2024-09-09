@@ -28,6 +28,7 @@ export type UserGetType = {
 }
 
 export type RepoGetAllType = {
+  id: number;
   name: string | null;
   language: string | null;
   description: string | null;

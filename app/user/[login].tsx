@@ -14,6 +14,7 @@ export default function UserScreen() {
   const { avatar_url, name, login, location, id, followers, public_repos, repos_url } = useLocalSearchParams();
 
   const [repo, setRepo] = useState<RepoGetAllType>([{
+    id: 0,
     name: null,
     language: null,
     description: null,
@@ -55,8 +56,8 @@ export default function UserScreen() {
         repo.map((repository) => {
           return (
             <>
-              <RepoComponent name={repository.name} language={repository.language} description={repository.description}
-                created_at={repository.created_at} pushed_at={repository.pushed_at} html_url={repository.html_url} />
+              <RepoComponent key={repository.id} name={repository.name} language={repository.language} description={repository.description}
+                created_at={repository.created_at} pushed_at={repository.pushed_at} html_url={repository.html_url}/>
             </>)
         }) : <></>}
     </ContainerScreen >
