@@ -2,13 +2,6 @@ export type OsNameInfo = {
     osName: string | null;
   };
 
-export type UserGetMinunType = {
-    avatar_url: string | null;
-    name: string | null;
-    login: string | null;
-    location: string | null;
-}
-
 export type InfoUserBaseType = {
   name: string | null; 
   location: string | null; 

@@ -4,22 +4,13 @@ import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components/native';
 import { API_URL, GITHUB_TOKEN } from '@env';
-import { RepoGetType, UserGetType } from '@/utils/protocols';
+import { RepoGetType } from '@/utils/protocols';
 import { InfoBase } from '@/components/infoBase';
 import { NumFollowersComponent } from '@/components/numFollowersComponent';
 
 export default function UserScreen() {
-  const { login } = useLocalSearchParams();
-  const [user, setUser] = useState<UserGetType>({
-    avatar_url: null,
-    name: null,
-    login: null,
-    location: null,
-    id: null,
-    followers: null,
-    public_repos: null,
-    repos_url: null
-  });
+  const {avatar_url, name, login, location, id, followers, public_repos, repos_url} = useLocalSearchParams();
+  console.log(avatar_url, name, login, location, id, followers, public_repos, repos_url)
 
   const [repo, setRepo] = useState<RepoGetType>({
     name:  null,
@@ -31,35 +22,35 @@ export default function UserScreen() {
   })
 
   useEffect(() => {
-    axios.get(`${API_URL}/users/${login}`, {
+    axios.get(`${repos_url}?sort=updated`, {
       headers: {
         Authorization: `Bearer ${GITHUB_TOKEN}`
       }
     })
       .then((data) => {
         console.log(data.data)
-        setUser(data.data)
+        setRepo(data.data)
       })
       .catch(e => { console.log(e) })
-  }, [login])
+  }, [repos_url])
 
   return (
     <ContainerScreen>
       <NavBar home={false} />
 
       <ContainerAvatarUser>
-        <ImageUser source={{ uri: `${user.avatar_url}` }} />
+        <ImageUser source={{ uri: `${avatar_url}` }} />
       </ContainerAvatarUser>
 
-      <InfoBase name={user.name} id={user.id} location={user.location} login={user.login} key={user.id} />
+      <InfoBase name={name.toString()} id={Number(id)} location={location.toString()} login={login.toString()} key={id.toString()} />
 
-      <NumFollowersComponent followers={user.followers} public_repos={user.public_repos} />
+      <NumFollowersComponent followers={Number(followers)} public_repos={Number(public_repos)} />
 
       <ViewRepo>
         <RepoText>Repositories</RepoText>
         <RepoText></RepoText>
       </ViewRepo>
-      
+
     </ContainerScreen>
   );
 }

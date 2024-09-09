@@ -4,17 +4,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import NavBar from '@/components/navBar';
 import axios from 'axios';
-import { UserGetMinunType } from '@/utils/protocols';
+import { UserGetType } from '@/utils/protocols';
 import { API_URL, GITHUB_TOKEN } from '@env';
 import { Link } from 'expo-router';
 
 export default function SearchScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [user, setUser] = useState<UserGetMinunType>({
+  const [user, setUser] = useState<UserGetType>({
     avatar_url: null,
     name: null,
     login: null,
-    location: null
+    location: null,
+    id: null,
+    followers: null,
+    public_repos: null,
+    repos_url: null
   });
 
   useEffect(() => {
@@ -42,7 +46,16 @@ export default function SearchScreen() {
           value={searchValue} onChangeText={(text: string) => { setSearchValue(text) }} />
       </ContainerSearch>
       {searchValue.length > 0 && user.login ?
-        <Link href={`/user/${user.login}`} style={{marginLeft: 20, marginBottom: 20, marginRight: 20}}>
+        <Link
+          href={{
+            pathname: `/user/[login]`,
+            params: {
+              avatar_url: user.avatar_url, name: user.name, login: user.login,
+              location: user.location, id: user.id, followers: user.followers,
+              public_repos: user.public_repos, repos_url: user.repos_url
+            }
+          }}
+          style={{ marginLeft: 20, marginBottom: 20, marginRight: 20 }}>
           <ContainerUser $user={true} >
             <View style={{ display: 'flex', flexDirection: 'row' }}>
               <ImageUser
@@ -94,13 +107,13 @@ const SearchInput = styled.TextInput`
   font-weight: 400;
 `
 
-const ContainerUser = styled.View<{ $user: boolean;}>`
+const ContainerUser = styled.View<{ $user: boolean; }>`
   height: 116px;
-  ${props => props.$user ? 'width: 100%' : "" };
+  ${props => props.$user ? 'width: 100%' : ""};
   border: 0.3px solid #9CA3AF;
   border-radius: 10px;
   background-color: #111111;
-  margin: ${props => props.$user ? '0px' : "0px 20px 20px 20px" };
+  margin: ${props => props.$user ? '0px' : "0px 20px 20px 20px"};
   display: flex;
   flex-direction: row;
   align-items: center;
