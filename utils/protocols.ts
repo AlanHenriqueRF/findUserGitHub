@@ -1,3 +1,5 @@
+import { Href } from "expo-router";
+
 export type OsNameInfo = {
     osName: string | null;
   };
@@ -25,11 +27,20 @@ export type UserGetType = {
   repos_url: string | null;
 }
 
-export type RepoGetType = {
+export type RepoGetAllType = {
   name: string | null;
-  languages_url: string | null;
+  language: string | null;
   description: string | null;
   created_at: string | null;
   pushed_at: string | null;
-  html_url: string | null;
+  html_url: Href ;
+}[]
+
+export type RepoGetType = {
+  name: string | null;
+  language: string | null;
+  description: string | null;
+  created_at: string | null;
+  pushed_at: string | null;
+  html_url: Href;
 }
