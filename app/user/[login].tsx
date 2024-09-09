@@ -50,22 +50,16 @@ export default function UserScreen() {
         <RepoText>Repositories</RepoText>
         <RepoText></RepoText>
       </ViewRepo>
-      {repo[0].name ?
-      <>
-      <RepoComponent name={repo[0].name} language={repo[0].language} description={repo[0].description}
-        created_at={repo[0].created_at} pushed_at={repo[0].pushed_at} html_url={repo[0].html_url} />
 
-      <RepoComponent name={repo[1].name} language={repo[1].language} description={repo[1].description}
-        created_at={repo[1].created_at} pushed_at={repo[1].pushed_at} html_url={repo[1].html_url} />
-      <RepoComponent name={repo[2].name} language={repo[2].language} description={repo[2].description}
-        created_at={repo[2].created_at} pushed_at={repo[2].pushed_at} html_url={repo[2].html_url} />
-      <RepoComponent name={repo[3].name} language={repo[3].language} description={repo[3].description}
-        created_at={repo[3].created_at} pushed_at={repo[3].pushed_at} html_url={repo[3].html_url} />
-        </>
-      : <></>
-      }
-
-    </ContainerScreen>
+      {repo.length > 0 ?
+        repo.map((repository) => {
+          return (
+            <>
+              <RepoComponent name={repository.name} language={repository.language} description={repository.description}
+                created_at={repository.created_at} pushed_at={repository.pushed_at} html_url={repository.html_url} />
+            </>)
+        }) : <></>}
+    </ContainerScreen >
   );
 }
 

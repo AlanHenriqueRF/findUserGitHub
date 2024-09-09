@@ -8,31 +8,34 @@ import { formatDate } from "@/utils/formatDate";
 export function RepoComponent({ name, language, description, created_at, pushed_at, html_url }: RepoGetType) {
     const router = useRouter();
     return (
-        <TouchableOpacity onPress={() => router.push(html_url)}>
-            <RepoContainer>
-                <NameRepoAndLanguageContainer>
-                    <Ionicons name="git-branch-outline" size={22} color="#9CA3AF" />
-                    <NameRepo>{name}</NameRepo>
-                </NameRepoAndLanguageContainer>
+        <>
+        {name ? 
+            <TouchableOpacity onPress={() => router.push(html_url)}>
+                <RepoContainer>
+                    <NameRepoAndLanguageContainer>
+                        <Ionicons name="git-branch-outline" size={22} color="#9CA3AF" />
+                        <NameRepo>{name}</NameRepo>
+                    </NameRepoAndLanguageContainer>
 
-                <NameRepoAndLanguageContainer>
-                    <Ionicons name="terminal-outline" size={18} color="#6E6E77" />
-                    <LanguageRepo>{language ? language : 'NO LANGUAGE DETECTED'}{ }</LanguageRepo>
-                </NameRepoAndLanguageContainer>
+                    <NameRepoAndLanguageContainer>
+                        <Ionicons name="terminal-outline" size={18} color="#6E6E77" />
+                        <LanguageRepo>{language ? language : 'NO LANGUAGE DETECTED'}{ }</LanguageRepo>
+                    </NameRepoAndLanguageContainer>
 
-                <NameRepoAndLanguageContainer>
-                    <DescriptionText>{description ? description : 'NO DESCRIPTION'}</DescriptionText>
-                </NameRepoAndLanguageContainer>
+                    <NameRepoAndLanguageContainer>
+                        <DescriptionText>{description ? description : 'NO DESCRIPTION'}</DescriptionText>
+                    </NameRepoAndLanguageContainer>
 
-                <NameRepoAndLanguageContainer>
-                    <LanguageRepo>Pushed at: {formatDate(pushed_at)}</LanguageRepo>
-                </NameRepoAndLanguageContainer>
+                    <NameRepoAndLanguageContainer>
+                        <LanguageRepo>Pushed at: {formatDate(pushed_at)}</LanguageRepo>
+                    </NameRepoAndLanguageContainer>
 
-                <NameRepoAndLanguageContainer>
-                    <LanguageRepo>Created at: {formatDate(created_at)}</LanguageRepo>
-                </NameRepoAndLanguageContainer>
-            </RepoContainer>
-        </TouchableOpacity>
+                    <NameRepoAndLanguageContainer>
+                        <LanguageRepo>Created at: {formatDate(created_at)}</LanguageRepo>
+                    </NameRepoAndLanguageContainer>
+                </RepoContainer>
+            </TouchableOpacity>: <></>}
+        </>
     )
 }
 
