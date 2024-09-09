@@ -9,14 +9,11 @@ export default function RecentSearchesScreen() {
   const [listUseState, setListUseState] = useState<UserRecentsType[]>([])
   const { recentSearches } = useRecentSearches();
 
-  console.log(recentSearches)
   useEffect(() => {
-    console.log('=>', recentSearches.length > listUseState.length)
     if (recentSearches.length > listUseState.length) {
       setListUseState(recentSearches);
     }
   }, [recentSearches])
-  console.log('oq ta acontetiendo')
   return (
     <>
       <ContainerScreen>

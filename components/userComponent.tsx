@@ -4,7 +4,7 @@ import { View } from "react-native"
 import { styled } from "styled-components/native"
 import { Ionicons } from '@expo/vector-icons';
 
-export function UserComponent({ avatar_url, name, login, location, id, followers, public_repos, repos_url }: UserGetType) {
+export function UserComponent({ avatar_url, name, login, location, id, followers, public_repos, repos_url }: UserGetType, noRepo?: boolean) {
     return (
         <Link
             href={{
