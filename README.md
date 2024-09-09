@@ -70,8 +70,11 @@ No arquivo .env, você precisa configurar a variável ***GITHUB_TOKEN***, que se
 # Figma
 Se desejar conferir o design que foi desenvolvido no Figma, clique no link abaixo:
 
+
 Link do [Figma](https://www.figma.com/design/jm1pAFrjBeGB7YF8CZM9Li/Untitled?node-id=1-47&node-type=FRAME&t=IuowpJgywc28eEfL-0)
 
 # Links de Entrega
 - Repositório no GitHub: https://github.com/seu-usuario/findusergithub
-- Link de download do APK: [Drive, Mega, Dropbox, GitHub]
+- Link de download do [APK](https://expo.dev/accounts/alanhenriquerf/projects/findUserGitHub/builds/9114f889-c51e-4e3d-ac29-5827127f3b4d)
+
+![image](https://github.com/user-attachments/assets/799185f4-d8ea-46e1-9ff8-55a4eb1c5709)
