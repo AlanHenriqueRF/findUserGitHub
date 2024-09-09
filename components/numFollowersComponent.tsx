@@ -20,6 +20,7 @@ const MidiaContainer = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 30px;
 `
 
 const FollowersRepo = styled.View`

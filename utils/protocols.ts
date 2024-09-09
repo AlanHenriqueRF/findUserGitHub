@@ -29,4 +29,14 @@ export type UserGetType = {
   id: number | null;
   followers: number | null;
   public_repos: number | null;
+  repos_url: string | null;
+}
+
+export type RepoGetType = {
+  name: string | null;
+  languages_url: string | null;
+  description: string | null;
+  created_at: string | null;
+  pushed_at: string | null;
+  html_url: string | null;
 }

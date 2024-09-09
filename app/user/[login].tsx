@@ -1,10 +1,10 @@
 import NavBar from '@/components/navBar';
+import axios from 'axios';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components/native';
 import { API_URL, GITHUB_TOKEN } from '@env';
-import axios from 'axios';
-import { UserGetType } from '@/utils/protocols';
+import { RepoGetType, UserGetType } from '@/utils/protocols';
 import { InfoBase } from '@/components/infoBase';
 import { NumFollowersComponent } from '@/components/numFollowersComponent';
 
@@ -17,8 +17,18 @@ export default function UserScreen() {
     location: null,
     id: null,
     followers: null,
-    public_repos: null
+    public_repos: null,
+    repos_url: null
   });
+
+  const [repo, setRepo] = useState<RepoGetType>({
+    name:  null,
+    languages_url: null,
+    description: null,
+    created_at: null,
+    pushed_at: null,
+    html_url: null
+  })
 
   useEffect(() => {
     axios.get(`${API_URL}/users/${login}`, {
@@ -41,9 +51,15 @@ export default function UserScreen() {
         <ImageUser source={{ uri: `${user.avatar_url}` }} />
       </ContainerAvatarUser>
 
-      <InfoBase name={user.name} id={user.id} location={user.location} login={user.login} key={user.id}/>
+      <InfoBase name={user.name} id={user.id} location={user.location} login={user.login} key={user.id} />
 
-      <NumFollowersComponent followers={user.followers} public_repos={user.public_repos}/>
+      <NumFollowersComponent followers={user.followers} public_repos={user.public_repos} />
+
+      <ViewRepo>
+        <RepoText>Repositories</RepoText>
+        <RepoText></RepoText>
+      </ViewRepo>
+      
     </ContainerScreen>
   );
 }
@@ -63,6 +79,21 @@ const ImageUser = styled.Image`
   width: 96px;
   height: 96px;
   border-radius: 9999px;
+`
+
+const ViewRepo = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+const RepoText = styled.Text`
+  color: #9CA3AF;
+  font-size: 18px;
+  font-weight: 700;
+  width: 140px;
+  margin-bottom: 16px;
 `
 
 
