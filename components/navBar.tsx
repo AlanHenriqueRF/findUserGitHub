@@ -42,5 +42,5 @@ const ContainerNav = styled.View<{ $heightOs?: string; home: boolean }>`
     justify-content: ${props => props.home ? 'center': 'space-between' };
     padding-top: ${props => props.$heightOs === '127px' ? '30px': '0px'};
     margin: 0 0 20px 0;
-    padding: ${props => props.home ? '32px 0 0 0': '32px 15px 0 15px'};
+    padding: ${props => props.home ? (props.$heightOs === '127px' ? '32px 0 0 0' : '0') : (props.$heightOs === '127px' ? '32px 15px 0 15px' : '0 15px 0 15px' )};
 `

@@ -26,7 +26,6 @@ export default function SearchScreen() {
       })
         .then((data) => {
           setUser(data.data)
-          console.log(data.data)
         })
         .catch(e => { console.log(e) })
     }
