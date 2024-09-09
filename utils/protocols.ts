@@ -31,8 +31,8 @@ export type RepoGetAllType = {
   name: string | null;
   language: string | null;
   description: string | null;
-  created_at: string | null;
-  pushed_at: string | null;
+  created_at: string;
+  pushed_at: string;
   html_url: Href ;
 }[]
 
@@ -40,7 +40,7 @@ export type RepoGetType = {
   name: string | null;
   language: string | null;
   description: string | null;
-  created_at: string | null;
-  pushed_at: string | null;
+  created_at: string;
+  pushed_at: string;
   html_url: Href;
 }

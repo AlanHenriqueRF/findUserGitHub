@@ -1,14 +1,13 @@
 import NavBar from '@/components/navBar';
 import axios from 'axios';
-import { Link, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components/native';
 import { GITHUB_TOKEN } from '@env';
 import { RepoGetAllType } from '@/utils/protocols';
 import { InfoBase } from '@/components/infoBase';
 import { NumFollowersComponent } from '@/components/numFollowersComponent';
-import { Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { RepoComponent } from '@/components/repoComponent';
 
 
 export default function UserScreen() {
@@ -18,8 +17,8 @@ export default function UserScreen() {
     name: null,
     language: null,
     description: null,
-    created_at: null,
-    pushed_at: null,
+    created_at: '',
+    pushed_at: '',
     html_url: 'https://github.com/'
   }])
 
@@ -51,33 +50,20 @@ export default function UserScreen() {
         <RepoText>Repositories</RepoText>
         <RepoText></RepoText>
       </ViewRepo>
+      {repo[0].name ?
+      <>
+      <RepoComponent name={repo[0].name} language={repo[0].language} description={repo[0].description}
+        created_at={repo[0].created_at} pushed_at={repo[0].pushed_at} html_url={repo[0].html_url} />
 
-      <RepoContainer>
-        <Link href={repo[0].html_url}>
-          <NameRepoAndLanguageContainer>
-            <Ionicons name="git-branch-outline" size={22} color="#9CA3AF" />
-            <NameRepo>{repo[0].name}</NameRepo>
-          </NameRepoAndLanguageContainer>
-
-          <NameRepoAndLanguageContainer>
-            <Ionicons name="terminal-outline" size={18} color="#6E6E77" />
-            <LanguageRepo>{repo[0].language}</LanguageRepo>
-          </NameRepoAndLanguageContainer>
-
-          <NameRepoAndLanguageContainer>
-            <DescriptionText>{repo[0].description ? repo[0].description : 'NO DESCRIPTION'}</DescriptionText>
-          </NameRepoAndLanguageContainer>
-
-          <NameRepoAndLanguageContainer>
-            <LanguageRepo>Pushed at: {repo[0].pushed_at}</LanguageRepo>
-          </NameRepoAndLanguageContainer>
-
-          <NameRepoAndLanguageContainer>
-            <LanguageRepo>Created at: {repo[0].created_at}</LanguageRepo>
-          </NameRepoAndLanguageContainer>
-        </Link>
-
-      </RepoContainer>
+      <RepoComponent name={repo[1].name} language={repo[1].language} description={repo[1].description}
+        created_at={repo[1].created_at} pushed_at={repo[1].pushed_at} html_url={repo[1].html_url} />
+      <RepoComponent name={repo[2].name} language={repo[2].language} description={repo[2].description}
+        created_at={repo[2].created_at} pushed_at={repo[2].pushed_at} html_url={repo[2].html_url} />
+      <RepoComponent name={repo[3].name} language={repo[3].language} description={repo[3].description}
+        created_at={repo[3].created_at} pushed_at={repo[3].pushed_at} html_url={repo[3].html_url} />
+        </>
+      : <></>
+      }
 
     </ContainerScreen>
   );
