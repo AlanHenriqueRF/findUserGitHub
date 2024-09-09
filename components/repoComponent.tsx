@@ -1,7 +1,7 @@
 import { styled } from "styled-components/native"
 import { Ionicons } from '@expo/vector-icons';
 import { RepoGetType } from "@/utils/protocols";
-import { TouchableOpacity } from "react-native";
+import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { formatDate } from "@/utils/formatDate";
 
@@ -10,7 +10,7 @@ export function RepoComponent({ name, language, description, created_at, pushed_
     return (
         <>
         {name ? 
-            <TouchableOpacity onPress={() => router.push(html_url)}>
+            <Pressable onPress={() => router.push(html_url)}>
                 <RepoContainer>
                     <NameRepoAndLanguageContainer>
                         <Ionicons name="git-branch-outline" size={22} color="#9CA3AF" />
@@ -35,7 +35,7 @@ export function RepoComponent({ name, language, description, created_at, pushed_
                     </NameRepoAndLanguageContainer>
                     
                 </RepoContainer>
-            </TouchableOpacity> : <></>}
+            </Pressable> : <></>}
         </>
     )
 }

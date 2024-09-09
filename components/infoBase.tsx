@@ -5,11 +5,11 @@ import { InfoUserBaseType } from '@/utils/protocols';
 export function InfoBase({ name, location, id, login }: InfoUserBaseType) {
     return (
         <ContainerBaseInfo>
-            <Name>{name}</Name>
+            <Name>{name ? name : "Error: No Name."}</Name>
             <Login>@{login}</Login>
             <ConatinerLocationId>
                 <Ionicons name="locate-outline" size={16} color="#9CA3AF" />
-                <Location>{location}</Location>
+                <Location>{location ? location : "Error: No location."}</Location>
                 <Ionicons name="id-card" size={16} color="#9CA3AF" />
                 <Id>{id}</Id>
             </ConatinerLocationId>

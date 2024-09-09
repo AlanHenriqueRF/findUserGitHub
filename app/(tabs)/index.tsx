@@ -1,4 +1,4 @@
-import { Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { styled } from 'styled-components/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
@@ -7,19 +7,22 @@ import axios from 'axios';
 import { UserGetType } from '@/utils/protocols';
 import { API_URL, GITHUB_TOKEN } from '@env';
 import { Link } from 'expo-router';
+import { useRecentSearches } from '@/constants/recentSearchesContext';
 
 export default function SearchScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [user, setUser] = useState<UserGetType>({
     avatar_url: null,
     name: null,
-    login: null,
-    location: null,
-    id: null,
+    login: '',
+    location: '',
+    id: 0,
     followers: null,
     public_repos: null,
     repos_url: null
   });
+
+  const { recentSearches, setRecentSearches } = useRecentSearches();
 
   useEffect(() => {
     if (searchValue.length > 0) {
@@ -35,11 +38,21 @@ export default function SearchScreen() {
     }
   }, [searchValue])
 
+  function handleAddToRecentSearches() {
+    setRecentSearches((prevSearches) => {
+      const userExists = prevSearches.some((recent) => recent.id === user.id);
+      if (!userExists) {
+        return [...prevSearches, user];
+      }
+      return prevSearches;
+    });
+  };
+
   return (
     <ContainerScreen>
       <NavBar home={true} />
       <ContainerSearch>
-        <Text aria-label="Label for Username" nativeID="labelUsername" style={{ color: "white" }}>
+        <Text aria-label="Label for Username" id="labelUsername" style={{ color: "white" }}>
           <Ionicons name="search-outline" size={20} color="#9CA3AF" />
         </Text>
         <SearchInput aria-label="input" aria-labelledby="labelUsername" placeholder="Search GitHub username..."
@@ -52,10 +65,11 @@ export default function SearchScreen() {
             params: {
               avatar_url: user.avatar_url, name: user.name, login: user.login,
               location: user.location, id: user.id, followers: user.followers,
-              public_repos: user.public_repos, repos_url: user.repos_url
+              public_repos: user.public_repos, repos_url: user.repos_url, key: user.id
             }
           }}
-          style={{ marginLeft: 20, marginBottom: 20, marginRight: 20 }}>
+          style={{ marginLeft: 20, marginBottom: 20, marginRight: 20 }}
+          onPress={handleAddToRecentSearches}>
           <ContainerUser $user={true} >
             <View style={{ display: 'flex', flexDirection: 'row' }}>
               <ImageUser

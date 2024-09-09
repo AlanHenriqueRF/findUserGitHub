@@ -7,8 +7,8 @@ export type OsNameInfo = {
 export type InfoUserBaseType = {
   name: string | null; 
   location: string | null; 
-  id: number | null; 
-  login: string | null; 
+  id: number;
+  login: string; 
 }
 
 export type FollowersNumType = {
@@ -19,9 +19,20 @@ export type FollowersNumType = {
 export type UserGetType = {
   avatar_url: string | null;
   name: string | null;
-  login: string | null;
+  login: string;
   location: string | null;
-  id: number | null;
+  id: number;
+  followers: number | null;
+  public_repos: number | null;
+  repos_url: string | null;
+}
+
+export type UserRecentsType = {
+  avatar_url: string | null;
+  name: string | null;
+  login: string;
+  location: string | null;
+  id: number;
   followers: number | null;
   public_repos: number | null;
   repos_url: string | null;

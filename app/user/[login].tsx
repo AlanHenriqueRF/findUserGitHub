@@ -11,7 +11,7 @@ import { RepoComponent } from '@/components/repoComponent';
 
 
 export default function UserScreen() {
-  const { avatar_url, name, login, location, id, followers, public_repos, repos_url } = useLocalSearchParams();
+  const { avatar_url, name, login, location, id, followers, public_repos, repos_url, key } = useLocalSearchParams();
 
   const [repo, setRepo] = useState<RepoGetAllType>([{
     id: 0,
@@ -43,7 +43,7 @@ export default function UserScreen() {
         <ImageUser source={{ uri: `${avatar_url}` }} />
       </ContainerAvatarUser>
 
-      <InfoBase name={name.toString()} id={Number(id)} location={location.toString()} login={login.toString()} key={id.toString()} />
+      <InfoBase name={name?name.toString(): null} id={Number(id)} location={location? location.toString(): null} login={login.toString()}  />
 
       <NumFollowersComponent followers={Number(followers)} public_repos={Number(public_repos)} />
 
