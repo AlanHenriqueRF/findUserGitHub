@@ -75,7 +75,7 @@ Link do [Figma](https://www.figma.com/design/jm1pAFrjBeGB7YF8CZM9Li/Untitled?nod
 
 # Links de Entrega
 - Repositório no GitHub: https://github.com/seu-usuario/findusergithub
-- Link de download do [APK](https://expo.dev/artifacts/eas/iV6bzTPmsSvyCvEutpG3Sz.aab)
+- Link de download do [APK](https://drive.google.com/drive/folders/1KhA185sSHDc6NkA1LZCmgCFeF-yN5mOc?usp=sharing)
 
 # layouts
 
