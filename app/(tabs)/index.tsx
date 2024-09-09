@@ -6,6 +6,7 @@ import NavBar from '@/components/navBar';
 import axios from 'axios';
 import { UserGetMinunType } from '@/utils/protocols';
 import { API_URL, GITHUB_TOKEN } from '@env';
+import { Link } from 'expo-router';
 
 export default function SearchScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -17,10 +18,9 @@ export default function SearchScreen() {
   });
 
   useEffect(() => {
-    
     if (searchValue.length > 0) {
       axios.get(`${API_URL}/users/${searchValue}`, {
-        headers:{
+        headers: {
           Authorization: `Bearer ${GITHUB_TOKEN}`
         }
       })
@@ -31,11 +31,10 @@ export default function SearchScreen() {
         .catch(e => { console.log(e) })
     }
   }, [searchValue])
-  console.log(user.name)
-  console.log(user.login)
+
   return (
     <ContainerScreen>
-      <NavBar></NavBar>
+      <NavBar home={true} />
       <ContainerSearch>
         <Text aria-label="Label for Username" nativeID="labelUsername" style={{ color: "white" }}>
           <Ionicons name="search-outline" size={20} color="#9CA3AF" />
@@ -43,27 +42,27 @@ export default function SearchScreen() {
         <SearchInput aria-label="input" aria-labelledby="labelUsername" placeholder="Search GitHub username..."
           value={searchValue} onChangeText={(text: string) => { setSearchValue(text) }} />
       </ContainerSearch>
-      <ContainerUser>
-        {searchValue.length === 0 ?
-          <MessageSearched>Please search for a GitHub username to display results.</MessageSearched>
-          :
-          <>
+      {searchValue.length > 0 && user.login ?
+        <Link href={`/user/${user.login}`} style={{marginLeft: 20, marginBottom: 20, marginRight: 20}}>
+          <ContainerUser $user={true} >
             <View style={{ display: 'flex', flexDirection: 'row' }}>
               <ImageUser
                 source={{ uri: `${user.avatar_url}` }}
               />
               <View>
-                <NameSearched>{user.name ? user.name: "Error: No name."}</NameSearched>
+                <NameSearched>{user.name ? user.name : "Error: No name."}</NameSearched>
                 <UserLoginSearched>{user.login}</UserLoginSearched>
-                <CitySearched>{user.location ? user.location: "Error: No location."}</CitySearched>
+                <CitySearched>{user.location ? user.location : "Error: No location."}</CitySearched>
               </View>
             </View>
             <IconUser>
               <Ionicons name="chevron-forward-outline" size={20} color="#9CA3AF" />
             </IconUser>
-          </>
-        }
-      </ContainerUser>
+          </ContainerUser>
+        </Link> : <ContainerUser $user={false}>
+          <MessageSearched>Please search for a GitHub username to display results.</MessageSearched>
+        </ContainerUser>
+      }
     </ContainerScreen >
   );
 }
@@ -96,12 +95,13 @@ const SearchInput = styled.TextInput`
   font-weight: 400;
 `
 
-const ContainerUser = styled.View`
+const ContainerUser = styled.View<{ $user: boolean;}>`
   height: 116px;
+  ${props => props.$user ? 'width: 100%' : "" };
   border: 0.3px solid #9CA3AF;
   border-radius: 10px;
   background-color: #111111;
-  margin: 0px 20px 20px 20px;
+  margin: ${props => props.$user ? '0px' : "0px 20px 20px 20px" };
   display: flex;
   flex-direction: row;
   align-items: center;

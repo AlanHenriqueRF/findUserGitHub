@@ -5,7 +5,7 @@ export default function RecentSearchesScreen() {
   return (
     <>
       <ContainerScreen>
-        <NavBar></NavBar>
+        <NavBar home={true}></NavBar>
       </ContainerScreen>
     </>
   );
