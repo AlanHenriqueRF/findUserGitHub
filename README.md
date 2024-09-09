@@ -75,6 +75,8 @@ Link do [Figma](https://www.figma.com/design/jm1pAFrjBeGB7YF8CZM9Li/Untitled?nod
 
 # Links de Entrega
 - Repositório no GitHub: https://github.com/seu-usuario/findusergithub
-- Link de download do [APK](https://expo.dev/accounts/alanhenriquerf/projects/findUserGitHub/builds/9114f889-c51e-4e3d-ac29-5827127f3b4d)
+- Link de download do [APK](https://expo.dev/artifacts/eas/iV6bzTPmsSvyCvEutpG3Sz.aab)
+
+# layouts
 
 ![image](https://github.com/user-attachments/assets/799185f4-d8ea-46e1-9ff8-55a4eb1c5709)
