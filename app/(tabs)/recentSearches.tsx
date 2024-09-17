@@ -1,5 +1,5 @@
 import NavBar from '@/components/navBar';
-import { useRecentSearches } from '@/constants/recentSearchesContext';
+import { useRecentSearches } from '@/components/recentSearchesContext';
 import { styled } from 'styled-components/native';
 import { UserComponent } from '@/components/userComponent';
 import { useEffect, useState } from 'react';

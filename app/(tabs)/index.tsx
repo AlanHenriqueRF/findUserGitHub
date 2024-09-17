@@ -7,7 +7,7 @@ import axios from 'axios';
 import { UserGetType } from '@/utils/protocols';
 import { API_URL, GITHUB_TOKEN } from '@env';
 import { Link } from 'expo-router';
-import { useRecentSearches } from '@/constants/recentSearchesContext';
+import { useRecentSearches } from '@/components/recentSearchesContext';
 
 export default function SearchScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -22,7 +22,7 @@ export default function SearchScreen() {
     repos_url: null
   });
 
-  const { recentSearches, setRecentSearches } = useRecentSearches();
+  const { setRecentSearches } = useRecentSearches();
 
   useEffect(() => {
     if (searchValue.length > 0) {

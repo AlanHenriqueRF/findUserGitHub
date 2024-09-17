@@ -1,4 +1,4 @@
-import { RecentSearchesProvider } from '@/constants/recentSearchesContext';
+import { RecentSearchesProvider } from '@/components/recentSearchesContext';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
